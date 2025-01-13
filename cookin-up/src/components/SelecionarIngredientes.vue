@@ -1,11 +1,15 @@
 <script lang="ts">
 import { obterCategorias } from '@/http/index';
+import ICategoria from '@/interfaces/ICategoria';
 
 export default {
-  data(){
-    return{
-      categorias: obterCategorias()
+  data() {
+    return {
+      categorias: [] as ICategoria[]
     }
+  },
+  async created() {
+    this.categorias = await obterCategorias()
   }
 }
 </script>
@@ -20,12 +24,12 @@ export default {
     </p>
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.nome">
-         {{ categoria.nome }}
+        {{ categoria.nome }}
       </li>
     </ul>
     <p class="paragrafo dica">
       *Atenção: consideramos que você tem em casa sal, pimenta e água.
-    </p>  
+    </p>
 
   </section>
 </template>
@@ -65,6 +69,4 @@ export default {
     margin-bottom: 2.5rem;
   }
 }
-
-
 </style>
