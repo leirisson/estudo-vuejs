@@ -2,25 +2,34 @@
 import type ICategoria from '@/interfaces/ICategoria';
 import type { PropType } from 'vue';
 import Tag from '@/components/Tag.vue';
+import IngredienteSelecionado from '@/components/IngredienteSelecionado.vue';
 
 
 export default{
     props:{
-        categoria: {type: Object as PropType<ICategoria>, required: true }
+        categoria: {
+          type: Object as PropType<ICategoria>,
+          required: true
+       },
     },
-    components: {Tag}
+    components: {Tag, IngredienteSelecionado},
+    emits:['adcionarIngrediente', 'removerIngrediente']
 }
 
 </script>
 <template>
 <article class="categoria">
-<header>
-    <img :src="`../imagens/icones/categorias_ingredientes/${categoria.imagem}`" alt="" srcset="">
+<header class="categoria__cabecalho">
+    <img :src="`../imagens/icones/categorias_ingredientes/${categoria.imagem}`" />
     <h2 class="paragrafo-lg categoria__nome">{{ categoria.nome }}</h2>
 </header>
 <ul class="categoria__ingredientes">
-    <li v-for=" ingrendiente in categoria.ingredientes" :key="ingrendiente">
-        <Tag :texto="ingrendiente"/>
+    <li v-for=" ingrediente in categoria.ingredientes" :key="ingrediente">
+        <IngredienteSelecionado 
+        :ingrediente="ingrediente"
+        @adcionarIngrediente="$emit('adcionarIngrediente', $event)"
+        @removerIngrediente="$emit('removerIngrediente', $event)"
+         />
     </li>
 </ul>
 </article>
@@ -31,8 +40,8 @@ export default{
   width: 19.5rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: var(--branco, #FFF);
-  box-shadow: 4px 4px 10px 0px rgba(68, 68, 68, 0.05);
+  background: white;
+  box-shadow: 4px 4px 10px 0px rgba(59, 59, 59, 0.05);
   height: 100%;
 
   display: flex;

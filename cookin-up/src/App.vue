@@ -1,9 +1,10 @@
 <script lang="ts">
 import Banner from './components/Banner.vue';
 import ConteudoPrincipal from './components/ConteudoPrincipal.vue';
+import Rodape from './components/Rodape.vue';
 
 export default {
-  components: { Banner, ConteudoPrincipal }
+  components: { Banner, ConteudoPrincipal, Rodape }
 }
 
 </script>
@@ -11,4 +12,5 @@ export default {
 <template>
   <Banner />
   <ConteudoPrincipal />
+  <Rodape texto="Desenvolvido por Leirisson | curso alura projeto para estudos"/>
 </template>

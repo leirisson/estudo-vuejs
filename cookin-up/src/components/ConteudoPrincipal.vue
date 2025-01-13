@@ -1,14 +1,38 @@
 <script lang="ts">
+
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import Tag from '@/components/Tag.vue';
+import MostrarReceitas from '@/components/MostrarReceitas.vue';
+
+import type { Pagina } from '@/types/Pagina';
 
 export default {
   data() {
     return {
-      ingredientes: []
+      ingredientes: [] as string[],
+      conteudo: 'SelecionarIngredientes' as Pagina
     }
   },
-  components: {SelecionarIngredientes}
+  components: {
+    SelecionarIngredientes,
+    Tag,
+    MostrarReceitas
+
+  },
+  methods: {
+    adcionarIngrediante(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
+
+    },
+    removerIngrediente(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(ingredienteDaLista => ingrediente !== ingredienteDaLista)
+    },
+
+    navegar(pagina: Pagina){
+      this.conteudo =pagina;
+    }
+
+  }
 }
 </script>
 
@@ -19,8 +43,8 @@ export default {
         Sua lista:
       </span>
       <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-        <li v-for="ingrediente in ingredientes" :key="ingrediente" >
-          <Tag :texto="ingrediente"/>
+        <li v-for="ingrediente in ingredientes" :key="ingrediente">
+          <Tag :texto="ingrediente" ativa />
         </li>
       </ul>
 
@@ -29,8 +53,22 @@ export default {
         Sua lista está vazia, selecione ingredientes para iniciar.
       </p>
     </section>
-    <SelecionarIngredientes />
+    
+    <SelecionarIngredientes
+      v-if="conteudo === 'SelecionarIngredientes'" 
+      @adcionarIngrediente="adcionarIngrediante"
+      @remover-ingrediente="removerIngrediente" 
+      @bucar-receitas="navegar('MostrarReceitas')"
+    />
+
+    <MostrarReceitas 
+      v-else-if="conteudo === 'MostrarReceitas'" 
+    />
+
+    
+
   </main>
+
 </template>
 
 <style scoped>
