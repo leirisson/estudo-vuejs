@@ -6,7 +6,7 @@
     </div>
 
     <div class="column is-three-quarter">
-
+      <FormularioTarefas />
     </div>
   </main>
 
@@ -16,12 +16,14 @@
 import { defineComponent } from 'vue';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import BarraLateral from './components/BarraLateral.vue';
+import FormularioTarefas from './components/Formulario.vue';
 
 
 export default defineComponent({
   name: 'App',
   components: {
-    BarraLateral
+    BarraLateral,
+    FormularioTarefas
   }
 
 });
