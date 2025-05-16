@@ -11,7 +11,7 @@ export default defineComponent({
     name: "CronometroTempo",
     props: {
         tempoEmSegundos: {
-            type: Number,
+            type: Number, 
             default: 0
         }
     },
@@ -23,4 +23,8 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+strong{
+    color: rgb(66, 66, 66);
+}
+</style>
