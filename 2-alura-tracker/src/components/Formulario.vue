@@ -39,7 +39,9 @@ export default defineComponent({
     name: "FormularioTarefas",
     data() {
         return {
-            tempoEmSegundos: 0
+            tempoEmSegundos: 0,
+            cronometro: 0,
+
         }
     },
     computed: {
@@ -49,13 +51,16 @@ export default defineComponent({
     },
     methods: {
         iniciar() {
-            setInterval(() => {
+            // começa a contegem
+            // 1seg = 1000 ms
+            this.cronometro = setInterval(() => {
                 this.tempoEmSegundos += 1
             }, 1000)
-            console.log('iniciando')
+
         },
+        
         finalizar() {
-            console.log('finalizando')
+            clearInterval(this.cronometro)
         }
     },
 })

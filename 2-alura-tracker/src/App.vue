@@ -7,6 +7,7 @@
 
     <div class="column is-three-quarter">
       <FormularioTarefas />
+      <!-- Lista de Tarefas -->
     </div>
   </main>
 
