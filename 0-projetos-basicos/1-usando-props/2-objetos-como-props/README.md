@@ -1,4 +1,4 @@
-# 3-contador
+# 2-objetos-como-props
 
 ## Project setup
 ```
