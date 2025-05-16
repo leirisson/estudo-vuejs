@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box formulario">
         <div class="columns">
             <div class="column is-8" role="form" aria-label="Formulário para a criaçãode uma nova tarefa">
                 <input 
@@ -48,4 +48,11 @@ export default defineComponent({
 </script>
 
 
-<style scoped></style>
+<style>
+   .formulario{
+    color: var(--texto-primary);
+    background-color: var(--bg-primary);
+    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.342);
+   }
+
+</style>
