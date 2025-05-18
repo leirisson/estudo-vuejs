@@ -1,6 +1,10 @@
 <template>
-    <div v-for="user in users" :key="user.id">
-       <p class="user">{{ user.nome }}</p> 
+    <div v-for="(user, index) in users" :key="user.id">
+
+        <p class="user" v-if="index % 2 == 0">{{ index }} => {{ user.nome }}</p>
+        <p class="user-impar" v-else>
+            {{ index }} => {{ user.nome }}
+        </p>
     </div>
 </template>
 <script lang="ts">
@@ -37,7 +41,7 @@ export default defineComponent({
                     nome: "Pedro Santos",
                     email: "pedro.santos@example.com"
                 }
-            ] 
+            ]
         }
 
     }
@@ -46,10 +50,19 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.user{
-    background: #000;
+.user {
+    background: #006e09;
     width: 80%;
-    margin: 5px  auto;
+    margin: 5px auto;
+    padding: 3px 6px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.user-impar {
+    background: #aa0000;
+    width: 80%;
+    margin: 5px auto;
     padding: 3px 6px;
     color: #fff;
     border-radius: 4px;
