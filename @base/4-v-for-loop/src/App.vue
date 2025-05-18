@@ -1,17 +1,15 @@
 <template>
-  <LoginSystem />
-
+  <ArrayComponent />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LoginSystem from './components/Login.vue'
+import ArrayComponent from './components/AraayComponent.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    LoginSystem,
-
+    ArrayComponent
   }
 });
 </script>
