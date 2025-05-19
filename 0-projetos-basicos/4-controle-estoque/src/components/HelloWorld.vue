@@ -1,33 +1,19 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  </div>
+  <div class="todos-produtos">
+    <div class="produto" v-for="(produto, index) in produtos" :key="index">
+      <h2>produto</h2>
+      <p v-if="produto.estoque > 0">
+        <strong>Produto:</strong> {{ produto.nome }} disponível <br>
+        <strong>Unidades: </strong> ({{ produto.estoque }}). <br>
+        <button @click="comprar(index)">Comprar</button>
+      </p>
+      <p v-else class="red">Produto fora do estoque</p>
+
+    </div>
+
   </div>
 </template>
 
@@ -39,23 +25,65 @@ export default defineComponent({
   props: {
     msg: String,
   },
+
+  data() {
+    return {
+      produtos: [
+        { nome: 'Fone de ouvido Bluetooth', estoque: 3 },
+        { nome: 'Smartphone Android', estoque: 15 },
+        { nome: 'Notebook i7 16GB', estoque: 5 },
+        { nome: 'Mouse sem fio', estoque: 22 },
+        { nome: 'Teclado mecânico', estoque: 8 },
+        { nome: 'Monitor 24 polegadas', estoque: 6 },
+        { nome: 'Câmera DSLR', estoque: 4 },
+        { nome: 'Tablet 10 polegadas', estoque: 9 },
+        { nome: 'Caixa de som portátil', estoque: 12 },
+        { nome: 'Carregador wireless', estoque: 0 }
+      ],
+    }
+  },
+  methods: {
+    comprar(index: number) {
+      this.produtos[index].estoque -= 1
+    }
+  }
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
+}
+
+.todos-produtos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.produto {
+  border: 1px solid #000;
+  padding: .5rem;
+  max-width: 200px;
+}
+
+.red {
+  background-color: red;
+  padding: .3rem;
+  color: #fff;
 }
 </style>
