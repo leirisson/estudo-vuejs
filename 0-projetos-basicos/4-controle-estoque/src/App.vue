@@ -1,15 +1,16 @@
 <template>
-  <EstilosComponent />
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
-import EstilosComponent from './components/Estilos.vue'
+
 export default defineComponent({
   name: 'App',
   components: {
-    EstilosComponent
+    HelloWorld
   }
 });
 </script>
