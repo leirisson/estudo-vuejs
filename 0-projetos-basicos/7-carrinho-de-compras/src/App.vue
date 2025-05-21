@@ -19,6 +19,7 @@
     <li>Nome: {{ produto.name }} || Preço: {{ produto.price }}</li>
   </ul>
   <p v-if="carrinho.length > 0"> Total: {{ somaTotal }} </p>
+  <p v-else>Sem produtos no carrinho</p>
 </template>
 
 <script lang="ts">
@@ -40,12 +41,7 @@ export default defineComponent({
   },
 
   computed: {
-    somaTotal(): any {
-
-      if (this.carrinho.length === 0) {
-        return `sem rpodutos`
-      }
-
+    somaTotal(): number {
       const valores = this.carrinho.map(produto => produto.price)
       const total = valores.reduce((acumulador, valor) => Number(acumulador) + Number(valor))
 
