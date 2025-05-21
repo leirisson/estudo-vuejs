@@ -1,12 +1,24 @@
 <template>
   <HelloWorld msg="Carrinho de Compras (Emit)" />
-  <CardProduct @add-carrinho="aoAdicioarCarrinho" image="https://prd.place/400?id=17" name="mesa de canto"
-    price="75" description="Mesa muito nova" />
+  <div class="produtos">
+    <CardProduct @add-carrinho="aoAdicioarCarrinho" image="https://prd.place/400?id=37" name="fusca" price="5.200 "
+      description="Corre muito" />
+    <CardProduct @add-carrinho="aoAdicioarCarrinho" image="https://prd.place/400?id=35" name="Biz ano 1950"
+      price="500 " description="Corre muito" />
+    <CardProduct @add-carrinho="aoAdicioarCarrinho" image="https://prd.place/400?id=7" name="Monitor 23 polegadas"
+      price="150 " description="alta definição" />
+    <CardProduct @add-carrinho="aoAdicioarCarrinho" image="https://prd.place/400?id=27" name="Espelho super magico"
+      price="250" description="Espelho magico" />
+    <CardProduct @add-carrinho="aoAdicioarCarrinho" image="https://prd.place/400?id=17" name="mesa de canto"
+      price="75" description="Mesa muito nova" />
 
-    <ul v-for="(produto, index) in carrinho" :key="index">
-      <li>Nome: {{ produto.name }} || Preço: {{ produto.price }}</li>
-    </ul>
-    <p v-if="carrinho.length > 0 "> Total: {{ somaTotal }} </p>
+  </div>
+
+
+  <ul v-for="(produto, index) in carrinho" :key="index">
+    <li>Nome: {{ produto.name }} || Preço: {{ produto.price }}</li>
+  </ul>
+  <p v-if="carrinho.length > 0"> Total: {{ somaTotal }} </p>
 </template>
 
 <script lang="ts">
@@ -28,13 +40,13 @@ export default defineComponent({
   },
 
   computed: {
-    somaTotal(): any{
+    somaTotal(): any {
 
-      if(this.carrinho.length === 0){
+      if (this.carrinho.length === 0) {
         return `sem rpodutos`
       }
 
-      const valores = this.carrinho.map( produto => produto.price)
+      const valores = this.carrinho.map(produto => produto.price)
       const total = valores.reduce((acumulador, valor) => Number(acumulador) + Number(valor))
 
       return total
@@ -57,5 +69,12 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.produtos{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: auto;
 }
 </style>
